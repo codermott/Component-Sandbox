@@ -37,4 +37,11 @@ export const Default = {
     articlesLabel: "Articles",
     shopAllUrl: "/l/deer-hunting",
   },
+
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/nBWEkX4E8mkGidfBp9RDHf/Untitled?node-id=793-19406&t=duYfNDAqBGTDWBYS-4",
+    },
+  },
 };

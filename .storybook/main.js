@@ -1,4 +1,3 @@
-/** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
   stories: [
     "../stories/**/*.mdx",
@@ -7,7 +6,6 @@ const config = {
 
   addons: [
     "@chromatic-com/storybook",
-    "@storybook/addon-vitest",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
     "@whitespace/storybook-addon-html",

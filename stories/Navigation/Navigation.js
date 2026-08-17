@@ -1,5 +1,3 @@
-import "./Navigation.css";
-
 export const createNavigation = ({
   shopAllLabel = "Shop All",
   learnMoreLabel = "Learn More",
@@ -15,6 +13,197 @@ export const createNavigation = ({
   wrapper.setAttribute("aria-label", "Navigation");
 
   wrapper.innerHTML = `
+    <style>
+      .sNav {
+        padding-block: 0;
+        padding-inline: 0;
+        text-transform: uppercase;
+      }
+
+      .sNavDesktop {
+        display: block;
+        width: 100%;
+        color: white;
+      }
+
+      .sNavDesktop .sBtn {
+        background: white;
+        color: black;
+        padding: 0.2rem 1rem;
+        border-radius: 4px;
+      }
+
+      .sNavDesktop a {
+        color: white;
+      }
+
+      .sNavDesktop ul {
+        display: flex;
+        margin: 0 auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        list-style: none;
+        font-size: clamp(1rem, 1.5vw, 1.75rem);
+        background: #b2a384;
+      }
+
+      .sNav a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .sNav li {
+        list-style: none;
+      }
+
+      .sNavMobile {
+        display: none;
+        width: 100%;
+      }
+
+      .sNavMobile_shopAll,
+      .sNavMobile_learn {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        font-size: clamp(1.05rem, 0.96rem + 0.65vw, 1.3rem);
+      }
+
+      .sNavMobile_shopAll {
+        background: #b2a384;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+      }
+
+      .sNavMobile_right {
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding: 0.75rem 0.85rem;
+        position: relative;
+      }
+
+      .sNavMobile_learn {
+        position: absolute;
+        left: 0.85rem;
+        right: 3.35rem;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .sNavMobile_toggle {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+        border: 0;
+        background: transparent;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.34rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .sNavMobile_toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: #fff;
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .sNavMobile_panel {
+        position: relative;
+        width: 100%;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.681);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: max-height 0.5s ease, opacity 0.25s ease, background-color 0.22s ease;
+      }
+
+      .sNavMobile_panel.is-open {
+        display: grid;
+        max-height: 16rem;
+        opacity: 1;
+        visibility: visible;
+        background: rgba(0, 0, 0, 0.743);
+      }
+
+      .sNavMobile_panel a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.05rem);
+        padding: 0.9rem 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .sNavMobile_panel a:hover,
+      .sNavMobile_panel a:focus-visible {
+        background: rgba(65, 65, 65, 0.72);
+        color: #f5711a;
+      }
+
+      @media (max-width: 767px) {
+        .sNavDesktop {
+          display: none;
+        }
+
+        .sNavMobile {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: stretch;
+        }
+
+        .sNavMobile_shopAll,
+        .sNavMobile_right {
+          min-height: 56px;
+        }
+
+        .sNavMobile_panel {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .sNavMobile,
+        .sNavMobile_panel {
+          display: none !important;
+        }
+      }
+    </style>
+
     <nav class="sNavDesktop" aria-label="Desktop navigation">
       <ul>
         <li>
