@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+    />
+  </head>
+  <body>
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      p {
+        color: white;
+      }
+      .flex_row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .flex_column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .sContainer {
+        max-width: 1400px;
+        width: 100%;
+        background: #333132;
+        color: white;
+      }
+      .sContainer section {
+        margin-bottom: 2rem;
+      }
+      .sContainer a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .sCat__img img {
+        width: 100%;
+      }
+      .shop__btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid white;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: transparent;
+        }
+      }
+      .shop__white {
+        background: white;
+        color: black;
+      }
+      .sBanner {
+        aspect-ratio: 16/5;
+        background-image: url("https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_1920/v1695923136/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Header-Img.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .sHero {
+        background-image: url("https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_1920/v1695923136/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Header-Img.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        aspect-ratio: 16/7;
+      }
+
+      .sNav {
+        background-color: #ffffff;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        overflow: visible;
+      }
+      .sNavDesktop {
+        display: block;
+        width: 100%;
+        padding-bottom: 1rem;
+      }
+
+      .sNavDesktop ul {
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 1rem;
+      }
+
+      .sNav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        gap: 1rem;
+        font-size: clamp(1rem, 1.5vw, 28px);
+      }
+      .sNav a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+      }
+      .sNav li {
+        list-style: none !important;
+      }
+
+      .sNavMobile {
+        display: none;
+        width: 100%;
+      }
+
+      .sNavMobile_shopAll,
+      .sNavMobile_learn {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        font-size: clamp(1.05rem, 0.96rem + 0.65vw, 1.3rem);
+      }
+
+      .sNavMobile_shopAll {
+        background: #f5711a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+      }
+
+      .sNavMobile_right {
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding: 0.75rem 0.85rem;
+        position: relative;
+      }
+
+      .sNavMobile_learn {
+        position: absolute;
+        left: 0.85rem;
+        right: 3.35rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .sNavMobile_toggle {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+      }
+
+      .sNavMobile_toggle {
+        border: 0;
+        background: transparent;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.34rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .sNavMobile_toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: #fff;
+        border-radius: 2px;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .sNavMobile_toggle.is-open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .sNavMobile_panel {
+        position: relative;
+        width: 100%;
+        z-index: 1;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.681);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition:
+          max-height 0.5s ease,
+          opacity 0.25s ease,
+          background-color 0.22s ease;
+      }
+
+      .sNavMobile_panel.is-open {
+        display: grid;
+        max-height: 16rem;
+        opacity: 1;
+        visibility: visible;
+        background: rgba(0, 0, 0, 0.743);
+      }
+      .sNavMobile_learn {
+        color: #fff !important;
+      }
+
+      .sNavMobile_panel a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.05rem);
+        padding: 0.9rem 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.22);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .sNavMobile_panel a:hover,
+      .sNavMobile_panel a:focus-visible {
+        background: rgba(65, 65, 65, 0.72);
+        color: #f5711a;
+      }
+
+      @media (max-width: 767px) {
+        .sNavDesktop {
+          display: none;
+        }
+
+        .sNavMobile {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: stretch;
+        }
+
+        .sNavMobile_shopAll,
+        .sNavMobile_right {
+          min-height: 56px;
+        }
+
+        .sNavMobile_panel {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .sNavMobile,
+        .sNavMobile_panel {
+          display: none !important;
+        }
+      }
+
+      /*=============Categories=============*/
+
+      .sCategories {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        visibility: visible;
+
+        background: linear-gradient(
+          180deg,
+          #333132 0%,
+          #333132 50%,
+          #b2a384 50%,
+          #b2a384 100%
+        );
+      }
+
+      .sCategories .splide__track {
+        overflow: visible;
+        width: 90%;
+      }
+
+      .sCategories .sCat__heading {
+        width: min(90%, 900px);
+        margin: 0 auto 1.5rem;
+        text-align: center;
+      }
+
+      .sCategories .splide__list {
+        margin: 0;
+        padding: 0;
+      }
+
+      .sCategories .splide__slide > a {
+        display: block;
+        text-align: center;
+      }
+
+      .sCategories .sCat__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .sCategories .splide__slide {
+        height: auto;
+      }
+
+      .sApparel,
+      .sCamoTech {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        visibility: visible;
+      }
+
+      .sApparel__heading,
+      .sCamoTech__heading {
+        width: min(90%, 900px);
+        margin: 0 auto 1.5rem;
+        text-align: center;
+      }
+
+      .sApparel .splide__track,
+      .sCamoTech .splide__track {
+        overflow: visible;
+        width: 90%;
+      }
+
+      .sApparel .splide__list,
+      .sCamoTech .splide__list {
+        margin: 0;
+        padding: 0;
+      }
+
+      .sApparel .splide__slide > a,
+      .sCamoTech .splide__slide > a {
+        display: block;
+        text-align: center;
+      }
+
+      .sApparel .splide__slide,
+      .sCamoTech .splide__slide {
+        height: auto;
+      }
+
+      .sApparel__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+        text-align: center;
+      }
+
+      .sApparel__card img {
+        display: block;
+        width: min(100%, 220px);
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #ffffff;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      }
+      .sApparel {
+        background: #212020;
+      }
+
+      .sApparel__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+      }
+
+      .sApparel__title {
+        margin: 0;
+      }
+
+      .sCamoTech__card {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #b2a384;
+      }
+
+      .sCamoTech__card summary {
+        list-style: none;
+        cursor: pointer;
+      }
+
+      .sCamoTech__card summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .sCamoTech__media img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .sCamoTech__media {
+        position: relative;
+      }
+
+      .sCamoTech__overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+        color: white;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      }
+
+      .sCamoTech__overlay h3,
+      .sCamoTech__overlay p {
+        margin: 0;
+      }
+
+      .sCamoTech__panel {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        background: rgba(178, 163, 132, 0.96);
+        transform: translateY(100%);
+        opacity: 0;
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+
+      .sCamoTech__card[open] .sCamoTech__panel {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .sCamoTech__accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: left;
+      }
+
+      .sCamoTech details {
+        border-top: 1px solid rgba(51, 49, 50, 0.2);
+        padding-top: 0.75rem;
+      }
+
+      .sCamoTech summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .sCamoTech details p {
+        margin: 0.75rem 0 0;
+      }
+
+      @media (min-width: 768px) and (max-width: 1024px) {
+        .sCategories {
+          background: linear-gradient(
+            180deg,
+            #333132 0%,
+            #333132 33.333%,
+            #b2a384 33.333%,
+            #b2a384 66.666%,
+            #333132 66.666%,
+            #333132 100%
+          );
+        }
+
+        .sCategories .splide__track {
+          overflow: visible;
+        }
+
+        .sCategories .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sCategories .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sCategories .splide__arrows,
+        .sCategories .splide__pagination {
+          display: none !important;
+        }
+
+        .sApparel .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sApparel .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sApparel .splide__arrows,
+        .sApparel .splide__pagination {
+          display: none !important;
+        }
+
+        .sCamoTech .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sCamoTech .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sCamoTech .splide__arrows,
+        .sCamoTech .splide__pagination {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .sCategories .splide__track {
+          overflow: hidden;
+        }
+
+        .sCategories .splide__list {
+          gap: 0;
+        }
+        .sCat__item {
+          max-width: 300px;
+          margin: 0 auto;
+        }
+        .splide__pagination {
+          bottom: 0.1rem;
+        }
+
+        .sApparel .splide__track,
+        .sCamoTech .splide__track {
+          overflow: hidden;
+        }
+
+        .sApparel .splide__list,
+        .sCamoTech .splide__list {
+          gap: 0;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .sCategories .splide__track {
+          overflow: visible;
+        }
+
+        .sCategories .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sCategories .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sCategories .splide__arrows,
+        .sCategories .splide__pagination {
+          display: none !important;
+        }
+
+        .sApparel .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sApparel .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sApparel .splide__arrows,
+        .sApparel .splide__pagination {
+          display: none !important;
+        }
+
+        .sCamoTech .splide__list {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.5rem;
+          transform: none !important;
+          justify-content: center;
+        }
+
+        .sCamoTech .splide__slide {
+          margin: 0 !important;
+          width: auto !important;
+        }
+
+        .sCamoTech .splide__arrows,
+        .sCamoTech .splide__pagination {
+          display: none !important;
+        }
+      }
+    </style>
+    <div class="sContainer" role="main">
+      <section class="sHero">
+        <div class="sHero__logo">
+          <img
+            src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_508/v1695923126/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Logo.png"
+            alt="Northern Flight Logo"
+          />
+        </div>
+      </section>
+      <section class="sSection sNav">
+        <nav class="sNavDesktop" aria-label="Desktop navigation">
+          <ul class="sContent">
+            <li><a href="#sbc">Shop By Category</a></li>
+            <li><span>|</span></li>
+            <li><a href="#fp">Featured Products</a></li>
+            <li><span>|</span></li>
+            <li><a href="#hfe">Hear From The Experts</a></li>
+            <li><span>|</span></li>
+            <li><a class="sBtn" href="/l/shop-all-she-outdoor">Shop All</a></li>
+          </ul>
+        </nav>
+        <div class="sNavMobile" aria-label="Mobile navigation">
+          <a class="sNavMobile_shopAll" href="/l/shop-all-she-outdoor"
+            >Shop All</a
+          >
+          <div class="sNavMobile_right">
+            <p class="sNavMobile_learn">Learn More</p>
+            <button
+              class="sNavMobile_toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="sNavMobilePanel"
+              aria-label="Open navigation menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+        <div class="sNavMobile_panel" id="sNavMobilePanel">
+          <a href="#sbc">Shop By Category</a>
+          <a href="#fp">Featured Products</a>
+          <a href="#hfe">Hear From The Experts</a>
+        </div>
+      </section>
+      <section class="splide sCategories" aria-label="Categories">
+        <div class="sCat__heading">
+          <h2 class="sCat__title">Explore the Categories</h2>
+          <h3>Accessories And Equipment</h3>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sCat__item">
+                  <div class="sCat__img">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_450/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Acc.png"
+                      alt="Category 01"
+                    />
+                    <div class="sCat__content flex_column">
+                      <h3 class="sCat__title">Accessories</h3>
+                      <div class="sCat__btn">
+                        <p class="shop__btn shop__white">SHOP NOW</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sCat__item">
+                  <div class="sCat__img">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_450/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Decoys.png"
+                      alt="Category 01"
+                    />
+                    <div class="sCat__content">
+                      <h3 class="sCat__title">Decoys</h3>
+                      <div class="sCat__btn">
+                        <p class="shop__btn shop__white">SHOP NOW</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sCat__item">
+                  <div class="sCat__img">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_450/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Dog-Training.png"
+                      alt="Category 01"
+                    />
+                    <div class="sCat__content">
+                      <h3 class="sCat__title">Dog Gear</h3>
+                      <div class="sCat__btn">
+                        <p class="shop__btn shop__white">SHOP NOW</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sCat__item">
+                  <div class="sCat__img">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_450/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Blinds.png"
+                      alt="Category 01"
+                    />
+                    <div class="sCat__content">
+                      <h3 class="sCat__title">Blinds & Seats</h3>
+                      <div class="sCat__btn">
+                        <p class="shop__btn shop__white">SHOP NOW</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="sBanner">
+        <div class="sBanner__img">
+          <img
+            src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_508/v1695923126/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Logo.png"
+            alt="Northern Flight Banner"
+          />
+        </div>
+      </section>
+      <section class="splide sApparel" aria-label="Apparel">
+        <div class="sApparel__heading">
+          <h2 class="sCat__title">Apparel</h2>
+          <h3>Layers Built For The Hunt</h3>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sApparel__card">
+                  <img
+                    src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_800/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Acc.png"
+                    alt="Apparel 01"
+                  />
+                  <div class="sApparel__content">
+                    <h3 class="sApparel__title">Base Layers</h3>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sApparel__card">
+                  <img
+                    src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_800/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Decoys.png"
+                    alt="Apparel 02"
+                  />
+                  <div class="sApparel__content">
+                    <h3 class="sApparel__title">Outerwear</h3>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sApparel__card">
+                  <img
+                    src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_800/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Dog-Training.png"
+                    alt="Apparel 03"
+                  />
+                  <div class="sApparel__content">
+                    <h3 class="sApparel__title">Headwear</h3>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="splide__slide">
+              <a href="#">
+                <div class="sApparel__card">
+                  <img
+                    src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_800/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Blinds.png"
+                    alt="Apparel 04"
+                  />
+                  <div class="sApparel__content">
+                    <h3 class="sApparel__title">Gloves</h3>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sCat__btn">
+          <p class="shop__btn shop__white">Shop All Apparel</p>
+        </div>
+      </section>
+      <section class="sCamoTech splide" aria-label="Camo Technology">
+        <div class="sCamoTech__heading">
+          <h2 class="sCat__title">Camo Technology</h2>
+          <h3>Built To Break Up Your Outline</h3>
+        </div>
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <details class="sCamoTech__card">
+                <summary>
+                  <div class="sCamoTech__media">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_900/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Acc.png"
+                      alt="Camo Technology 01"
+                    />
+                    <div class="sCamoTech__overlay">
+                      <h3 class="sCat__title">Pattern One</h3>
+                      <p>Tap to open details</p>
+                    </div>
+                  </div>
+                </summary>
+                <div class="sCamoTech__panel">
+                  <details class="sCamoTech__accordion">
+                    <summary>How It Works</summary>
+                    <p>
+                      This section can hold your accordion copy for the first
+                      camo technology item.
+                    </p>
+                  </details>
+                  <details class="sCamoTech__accordion">
+                    <summary>Best For</summary>
+                    <p>
+                      Use this area for materials, concealment notes, or hunting
+                      conditions.
+                    </p>
+                  </details>
+                </div>
+              </details>
+            </li>
+            <li class="splide__slide">
+              <details class="sCamoTech__card">
+                <summary>
+                  <div class="sCamoTech__media">
+                    <img
+                      src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_900/v1695923118/DigitalCreative/2023/Sitelets/Northern-Flight/NF-Cat-Decoys.png"
+                      alt="Camo Technology 02"
+                    />
+                    <div class="sCamoTech__overlay">
+                      <h3 class="sCat__title">Pattern Two</h3>
+                      <p>Tap to open details</p>
+                    </div>
+                  </div>
+                </summary>
+                <div class="sCamoTech__panel">
+                  <details class="sCamoTech__accordion">
+                    <summary>How It Works</summary>
+                    <p>
+                      This section can hold your accordion copy for the second
+                      camo technology item.
+                    </p>
+                  </details>
+                  <details class="sCamoTech__accordion">
+                    <summary>Best For</summary>
+                    <p>
+                      Use this area for materials, concealment notes, or hunting
+                      conditions.
+                    </p>
+                  </details>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="sProductShow"></section>
+      <section class="sArticles"></section>
+      <section class="sProStaff"></section>
+      <section class="sFooterBanner"></section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+      (function () {
+        const mobile = window.matchMedia("(max-width: 767px)");
+        const sliderSelectors = [".sCategories", ".sApparel", ".sCamoTech"];
+        const sliderState = new Map();
+
+        function resetInlineStyles(el) {
+          const track = el.querySelector(".splide__track");
+          const list = el.querySelector(".splide__list");
+          if (track) track.removeAttribute("style");
+          if (list) list.removeAttribute("style");
+          el.querySelectorAll(".splide__slide").forEach((slide) => {
+            slide.removeAttribute("style");
+          });
+        }
+
+        function mountMobileSlider(el) {
+          const slider = new Splide(el, {
+            perPage: 1,
+            perMove: 1,
+            focus: 0,
+            trimSpace: true,
+            gap: "1rem",
+            arrows: true,
+            pagination: true,
+            drag: true,
+            rewind: true,
+            classes: {
+              pagination: "splide__pagination",
+              page: "splide__pagination__page",
+            },
+          });
+
+          slider.mount();
+          return slider;
+        }
+
+        function syncSliders() {
+          sliderSelectors.forEach((selector) => {
+            const el = document.querySelector(selector);
+            if (!el) return;
+
+            const isMobile = mobile.matches;
+            const state = sliderState.get(selector);
+
+            if (isMobile) {
+              if (!state) {
+                sliderState.set(selector, mountMobileSlider(el));
+              }
+            } else {
+              if (state) {
+                state.destroy(true);
+                sliderState.delete(selector);
+              }
+              resetInlineStyles(el);
+            }
+          });
+        }
+
+        syncSliders();
+        mobile.addEventListener("change", syncSliders);
+      })();
+    </script>
+    <script reactSafe>
+      (function () {
+        var toggle = document.querySelector(".sNavMobile_toggle");
+        var panel = document.querySelector("#sNavMobilePanel");
+        var navSection = document.querySelector(".sSection.sNav");
+        var desktopMq = window.matchMedia("(min-width: 768px)");
+
+        if (!toggle || !panel || !navSection) {
+          return;
+        }
+
+        function setMenuState(isOpen) {
+          toggle.setAttribute("aria-expanded", String(isOpen));
+          toggle.classList.toggle("is-open", isOpen);
+          panel.classList.toggle("is-open", isOpen);
+        }
+
+        toggle.addEventListener("click", function () {
+          var isOpen = toggle.getAttribute("aria-expanded") === "true";
+          setMenuState(!isOpen);
+        });
+
+        panel.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            setMenuState(false);
+          });
+        });
+
+        document.addEventListener("click", function (event) {
+          var isOpen = toggle.getAttribute("aria-expanded") === "true";
+          if (!isOpen) {
+            return;
+          }
+
+          if (!navSection.contains(event.target)) {
+            setMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            setMenuState(false);
+          }
+        });
+
+        desktopMq.addEventListener("change", function (event) {
+          if (event.matches) {
+            setMenuState(false);
+          }
+        });
+
+        setMenuState(false);
+      })();
+    </script>
+  </body>
+</html>
